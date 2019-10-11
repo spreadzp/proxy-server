@@ -32,12 +32,10 @@ async function bootstrap() {
     // await http.createServer(server).listen(3000);
     //await https.createServer(httpsOptions, server).listen(443);
     // await app.listen(3000); */
-     await app.listen(443);
+    app.enableCors();
+    await app.listen(443);
   } catch (err) {
-
     console.log('err :', err);
   }
-
 }
-
 bootstrap();
