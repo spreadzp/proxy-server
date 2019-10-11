@@ -23,14 +23,14 @@ async function bootstrap() {
   );
   app.enableCors();
   await app.init();
-try{
-  await http.createServer(server).listen(3000);
-  await https.createServer(httpsOptions, server).listen(443);
-} catch (err) {
+  try {
+    await http.createServer(server).listen(3000);
+    await https.createServer(httpsOptions, server).listen(443);
+  } catch (err) {
 
-  console.log('err :', err);
-}
-  
+    console.log('err :', err);
+  }
+
 }
 
 bootstrap();
