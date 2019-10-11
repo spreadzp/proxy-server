@@ -11,7 +11,7 @@ export class AppService {
   async getAllReq(url: string, typeHost: Host): Promise<any> {
     const res = await this.getAllHostData(url, typeHost);
     let responseData = res; 
-    if(res.data) {
+    if(res && res.data) {
       responseData = (typeof res.data === 'string' ) ? res.data : this.replaceWavesToNdx(res.data);
     } else {
       responseData = res;
