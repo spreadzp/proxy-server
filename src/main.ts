@@ -21,7 +21,8 @@ async function bootstrap() {
     AppModule,
     new ExpressAdapter(server),
   );
-  app.enableCors();
+  // app.enableCors();
+  app.use(require('cors')())
   await app.init();
   try {
     await http.createServer(server).listen(3000);
