@@ -16,18 +16,13 @@ export class AppService {
   setResult (response: any) {
     let responseData = [];
     if( response && response.data[0]) {
-      //console.dir( response.data[0]);
-
       if(response.data[0].length) {
         for (const iterator of response.data[0]) {
-          // console.log('response.data[iterator] :',iterator );
           if(iterator) {
             responseData.push(this.replaceWavesToNdx(iterator));
-          }
-         
+          }         
         }
-      }
-      
+      }      
     } else if (response && response.data) {
       responseData.push(this.replaceWavesToNdx(response.data));
    }
@@ -72,7 +67,6 @@ export class AppService {
         } 
       }
       return unflatten(flatObj);
-    }
-    
+    }    
   }
 }
