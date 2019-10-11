@@ -10,11 +10,10 @@ dotenv.config();
 export class AppService {
   async getAllReq(url: string, typeHost: Host): Promise<any> {
     const res = await this.getAllHostData(url, typeHost);
-    let responseData = [];
-    return await this.setResult(res); 
+    return this.setResult(res); 
   }
 
-  async setResult (response: any) {
+  setResult (response: any) {
     let responseData = [];
     if( response && response.data[0]) {
       //console.dir( response.data[0]);
@@ -23,16 +22,16 @@ export class AppService {
         for (const iterator of response.data[0]) {
           // console.log('response.data[iterator] :',iterator );
           if(iterator) {
-            await responseData.push(this.replaceWavesToNdx(iterator));
+            responseData.push(this.replaceWavesToNdx(iterator));
           }
          
         }
       }
-      else {
-         responseData.push(this.replaceWavesToNdx(response.data));
-      }
-    }
-    return await responseData;
+      
+    } else if (response && response.data) {
+      responseData.push(this.replaceWavesToNdx(response.data));
+   }
+    return  responseData;
   }
 
   async getAllHostData(url: string, typeHost: Host) {
