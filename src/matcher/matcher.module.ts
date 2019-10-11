@@ -1,5 +1,5 @@
 import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
-import { AppService } from './app.service';
+import { AppService } from '../app.service';
 import { MatcherController } from './matcher.controller';
 import { HelmetMiddleware } from '@nest-middlewares/helmet';
 import { CorsMiddleware } from '@nest-middlewares/cors';

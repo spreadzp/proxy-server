@@ -1,6 +1,6 @@
 import { Controller, Get, Param, HttpException, HttpStatus, Query, Req } from '@nestjs/common';
-import { AppService } from './app.service';
-import { Host } from './host';
+import { AppService } from '../app.service';
+import { Host } from '../host';
 
 @Controller('matcher')
 export class MatcherController {
