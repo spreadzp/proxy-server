@@ -39,14 +39,14 @@ export class AppService {
     const flatObj = flatten(data);
     for (const key in flatObj) {
       if (flatObj.hasOwnProperty(key) && typeof flatObj[key] === 'string' && flatObj[key] === 'WAVES' || flatObj[key] === 'Waves') {
-        flatObj[key] = 'WAVES';
+        flatObj[key] = 'NDX';
       }
       if (flatObj[key] && typeof flatObj[key] === "object" && flatObj[key].toString() !== '{}') {
           const newObj = flatten(flatObj[key]);
           console.log('newObj :', newObj);
           for (const keyObj in newObj) {
             if (newObj.hasOwnProperty(keyObj) && typeof newObj[keyObj] === 'string' && newObj[keyObj] === 'WAVES' || flatObj[key] === 'Waves') {
-              newObj[keyObj] = 'WAVES';
+              newObj[keyObj] = 'NDX';
             }
           }
           flatObj[key] = newObj;
