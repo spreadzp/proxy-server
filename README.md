@@ -1,5 +1,6 @@
  
 ## Installation
+It must be node.js version more than 10
 
 ```bash
 $ npm install
