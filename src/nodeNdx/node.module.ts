@@ -2,7 +2,7 @@ import { Module, RequestMethod, NestModule, MiddlewareConsumer } from '@nestjs/c
 import { AppService } from '../app.service';
 import { NodeController } from './node.controller';
 import { HelmetMiddleware } from '@nest-middlewares/helmet';
-import { CorsMiddleware } from '@nest-middlewares/cors';
+import { CorsMiddleware } from '../cors.midlleware';
 
 @Module({
   imports: [],
@@ -12,7 +12,6 @@ import { CorsMiddleware } from '@nest-middlewares/cors';
 export class NodeModule  implements NestModule {
     configure(consumer: MiddlewareConsumer) {
       HelmetMiddleware.configure({});
-      CorsMiddleware.configure({});
       consumer
         .apply(HelmetMiddleware, CorsMiddleware)
         .forRoutes({ path: '**', method: RequestMethod.GET });  

@@ -32,7 +32,12 @@ async function bootstrap() {
     // await http.createServer(server).listen(3000);
     //await https.createServer(httpsOptions, server).listen(443);
     // await app.listen(3000); */
-    app.enableCors();
+    // app.enableCors();
+    const corsOptions = {
+      origin: '*'
+    }
+    app.use(require('cors')(corsOptions))
+    app.enableCors(corsOptions);
     await app.listen(443);
   } catch (err) {
     console.log('err :', err);

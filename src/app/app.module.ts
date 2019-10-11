@@ -5,7 +5,7 @@ import { MatcherModule } from '../matcher/matcher.module';
 import { NotFoundModule } from '../notFound/notFound.module';
 import { NodeModule } from '../nodeNdx/node.module';
 import { HelmetMiddleware } from '@nest-middlewares/helmet';
-import { CorsMiddleware } from '@nest-middlewares/cors';
+import { CorsMiddleware } from '../cors.midlleware';
 
 @Module({
   imports: [MatcherModule, NodeModule, NotFoundModule],
@@ -16,9 +16,8 @@ import { CorsMiddleware } from '@nest-middlewares/cors';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     HelmetMiddleware.configure({});
-    CorsMiddleware.configure({});
     consumer
       .apply(HelmetMiddleware, CorsMiddleware)
-      .forRoutes({ path: 'node/**', method: RequestMethod.GET });  
+      .forRoutes({ path: '**', method: RequestMethod.GET });  
   }
 }
