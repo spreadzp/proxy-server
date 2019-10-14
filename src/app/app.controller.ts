@@ -7,6 +7,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {} 
   @Get('**')
   allApi(@Req() request): Promise<any> {
-    return this.appService.getAllReq(request.originalUrl, Host.API);
+    const resp =  this.appService.getAllReq(request.originalUrl, request.headers, Host.API);
+    console.log('resp :', resp);
+    return resp;
   } 
 }

@@ -7,10 +7,11 @@ export class MatcherController {
   constructor(private readonly appService: AppService) {}
   @Get('')
   matcherKey(@Req() request): Promise<any> {
-    return this.appService.getAllReq(request.originalUrl + '/', Host.DEX);
+    return this.appService.getAllReq(request.originalUrl + '/', request.headers, Host.DEX);
   }
   @Get('**')
   matcherObStatus(@Req() request): Promise<any> {
-    return this.appService.getAllReq(request.originalUrl, Host.DEX);
+    // console.log('request.headers :', request.headers);
+    return this.appService.getAllReq(request.originalUrl, request.headers, Host.DEX);
   }
 }

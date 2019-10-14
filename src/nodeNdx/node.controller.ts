@@ -8,11 +8,13 @@ export class NodeController {
   @Get('')
   matcherKey(@Req() request): Promise<any> {
     const urlNoNode = request.originalUrl.includes('node') ? request.originalUrl.replace(/\/node/gi, '') : request.originalUrl;
-    return this.appService.getAllReq(urlNoNode + '/', Host.NDX_NODE);
+    return this.appService.getAllReq(urlNoNode + '/', request.headers, Host.NDX_NODE);
   }
   @Get('**')
   async matcherObStatus(@Req() request): Promise<any> {
     const urlNoNode = request.originalUrl.includes('node') ? request.originalUrl.replace(/\/node/gi, '') : request.originalUrl;
-    return await this.appService.getAllReq(urlNoNode, Host.NDX_NODE);
+    const resp = await this.appService.getAllReq(urlNoNode, request.headers, Host.NDX_NODE);
+    console.log('Matchresp :', resp);
+    return resp;
   }
 }
