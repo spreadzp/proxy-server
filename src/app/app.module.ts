@@ -6,9 +6,10 @@ import { NotFoundModule } from '../notFound/notFound.module';
 import { NodeModule } from '../nodeNdx/node.module';
 import { HelmetMiddleware } from '@nest-middlewares/helmet';
 import { CorsMiddleware } from '../cors.midlleware';
+import { VoteModule } from '../vote/vote.module';
 
 @Module({
-  imports: [MatcherModule, NodeModule, NotFoundModule],
+  imports: [MatcherModule, NodeModule, VoteModule, NotFoundModule],
   controllers: [AppController],
   providers: [AppService],
   exports: [AppService],

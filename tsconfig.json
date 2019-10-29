@@ -11,5 +11,6 @@
     "baseUrl": "./",
     "incremental": true
   },
+  "typeRoots": [ "node_modules/@types", "typings/index.d.ts" ],
   "exclude": ["node_modules", "dist"]
 }

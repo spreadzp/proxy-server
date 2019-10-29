@@ -1,44 +1,29 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
-import { ExpressAdapter } from '@nestjs/platform-express';
 const fs = require('fs');
-const http = require('http');
-const https = require('http');
-const cors = require('cors');
-const express = require('express');
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const httpsOptions = {
-/*   hostname: 'localhost', //'34.67.65.119',
-  port: 443,
-  path: '/',
-  method: 'GET', */
   key: fs.readFileSync('./secrets/localhost.key'),
   cert: fs.readFileSync('./secrets/localhost.crt'),
 };
-const server = express();
 async function bootstrap() {
- /*  const app = await NestFactory.create(
-    AppModule,
-    new ExpressAdapter(server)
-    
-  ); */
-  // app.enableCors();
-  /* app.use(require('cors')())
-  await app.init(); */
-  const app = await NestFactory.create(AppModule, {
-    httpsOptions,
-  });
-  try {
-    // await http.createServer(server).listen(3000);
-    //await https.createServer(httpsOptions, server).listen(443);
-    // await app.listen(3000); */
-    // app.enableCors();
+  let app = null;
+  if (process.env.NODE_ENV === 'production') {
+    app = await NestFactory.create(AppModule);
+  } else {
+    app = await NestFactory.create(AppModule, {
+      httpsOptions,
+    });
     const corsOptions = {
       origin: '*'
     }
-    app.use(require('cors')(corsOptions))
+    app.use(require('cors')(corsOptions));
     app.enableCors(corsOptions);
-    await app.listen(443);
+  }
+  try {
+    (process.env.NODE_ENV === 'production') ? await app.listen(process.env.PORT_PROD_HTTP) : await app.listen(process.env.PORT_LOCALE_HTTPS);
   } catch (err) {
     console.log('err :', err);
   }

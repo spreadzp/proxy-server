@@ -1,3 +1,7 @@
 API_NODE = https://api.bwc.theinvaders.pro
 DEX_NODE = https://dex.bwc.theinvaders.pro
 NDX_NODE = https://nodes.bwc.theinvaders.pro
+PORT_LOCALE_HTTPS = 443
+PORT_PROD_HTTP = 3000
+WALLET_PROD_HOST = https://wallet.bwc.theinvaders.pro:443
+WALLET_LOCAL_HOST = https://localhost:8080
